@@ -19,7 +19,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
   final List<Widget> _screens = [
     const Homescreen(),
     const DonationPage(),
-    const MapScreen(),
+     WebViewScreen(),
     const ProfileScreen(),
   ];
 

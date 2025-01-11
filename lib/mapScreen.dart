@@ -1,41 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:universe/universe.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
-class MapScreen extends StatelessWidget {
-  const MapScreen({super.key});
+class WebViewScreen extends StatelessWidget {
+  WebViewScreen({super.key});
+
+  WebViewController controller = WebViewController()
+    ..setJavaScriptMode(JavaScriptMode.unrestricted)
+    ..setNavigationDelegate(
+      NavigationDelegate(
+        onProgress: (int progress) {
+          // Update loading bar.
+        },
+        onPageStarted: (String url) {},
+        onPageFinished: (String url) {},
+        onHttpError: (HttpResponseError error) {},
+        onWebResourceError: (WebResourceError error) {},
+        onNavigationRequest: (NavigationRequest request) {
+          if (request.url.startsWith('https://www.youtube.com/')) {
+            return NavigationDecision.prevent;
+          }
+          return NavigationDecision.navigate;
+        },
+      ),
+    )
+    ..loadRequest(
+        Uri.parse('https://www.google.com/maps/search/?api=1&query=kozikode'));
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.amber[100],
-        elevation: 0,
-        title: const Text(
-          'Map',
-          style: TextStyle(
-            color: Colors.brown,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Column(
-          children: [
-            const Text(
-              'Map Screen',
-              style: TextStyle(fontSize: 18, color: Colors.brown),
-            ),
-            
-
-U.OpenStreetMap(
-  center: [-6.175329, 106.827253],
-  type: OpenStreetMapType.HOT,
-  zoom: 15,
-)
-          ],
-        ),
-      ),
+      body: Container(width: double.infinity,
+        child: WebViewWidget(controller: controller)),
     );
   }
 }

@@ -36,7 +36,7 @@ class UpdatesScreen extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10),
                   child: Image.network(
-                    'assets/images/flood.jpg', // Replace with your image URL
+                    'https://media.istockphoto.com/id/1062305448/photo/hurricane-season.jpg?s=612x612&w=0&k=20&c=mvCo41hEr7gH55hJc8YHv3SRnZJbZrsg31JhnnWS_80=', // Replace with your image URL
                     height: 200,
                     width: double.infinity,
                     fit: BoxFit.cover,

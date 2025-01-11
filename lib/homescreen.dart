@@ -1,6 +1,8 @@
 import 'package:crisisconnect1/complaint.dart';
 import 'package:crisisconnect1/customeWidgets/chart.dart';
 import 'package:crisisconnect1/emergency.dart';
+import 'package:crisisconnect1/loginpage.dart';
+import 'package:crisisconnect1/updatepage.dart';
 import 'package:flutter/material.dart';
 
 class Homescreen extends StatelessWidget {
@@ -10,25 +12,71 @@ class Homescreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         backgroundColor: const Color(0xFFD2B48C), // Beige color
-        title: const Center(
-          child: Text(
-            "CrisisConnect",
-            style: TextStyle(
-              color: Colors.brown,
-              fontWeight: FontWeight.bold,
-            ),
+        title:  Text(
+          "CrisisConnect",
+          style: TextStyle(
+            color: Colors.brown,
+            fontWeight: FontWeight.bold,
           ),
         ),
-        actions: const [
-          Icon(
-            Icons.notifications_none,
-            color: Colors.black,
-          ),
-          SizedBox(width: 16),
-        ],
+       
       ),
-      drawer: const Drawer(), // Add navigation drawer here
+
+      drawer: Drawer(
+        child: Column(
+          children: [
+            UserAccountsDrawerHeader(
+              accountName: Text("Username"),
+              accountEmail: Text("nsla123@gmail.com"),
+              currentAccountPicture: CircleAvatar(
+                backgroundImage: AssetImage("assets/images/flood.jpg"),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.home),
+              title: Text("Home"),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.person),
+              title: Text("Profile"),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text("Settings"),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+                        ListTile(
+              leading: Icon(Icons.update),
+              title: Text("Updates"),
+              onTap: () {
+                   Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => UpdatesScreen(),
+                      ));
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.logout),
+              title: Text("Logout"),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const Loginpage()));
+              },
+            ),
+          ],
+        ),
+      ), // Add navigation drawer here
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -73,11 +121,20 @@ class Homescreen extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 24),
-            const Center(
-              child: Text(
-                "Check for more updates",
-                style:
-                    TextStyle(color: Colors.brown, fontWeight: FontWeight.w500),
+            Center(
+              child: InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => UpdatesScreen(),
+                      ));
+                },
+                child: Text(
+                  "Check for more updates",
+                  style: TextStyle(
+                      color: Colors.brown, fontWeight: FontWeight.w500),
+                ),
               ),
             ),
             const SizedBox(height: 16),
@@ -85,28 +142,36 @@ class Homescreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 _ActionButton(
-                  ontap: (){
-                     Navigator.push(context, MaterialPageRoute(builder: (context)=>const ReportIssueScreen()));
+                  ontap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const ReportIssueScreen()));
                   },
                   icon: Icons.edit,
                   label: "Report \na crisis",
                 ),
                 _ActionButton(
-                   ontap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>const EmergencyScreen()));
-                   },
+                  ontap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const EmergencyScreen()));
+                  },
                   icon: Icons.contacts,
                   label: "Emergency\n contacts",
                 ),
               ],
             ),
-            const SizedBox(height: 30,),
-            Container(child:    CustomProgressChart(),)
-          
+            const SizedBox(
+              height: 30,
+            ),
+            Container(
+              child: CustomProgressChart(),
+            )
           ],
         ),
       ),
-     
     );
   }
 }
@@ -147,7 +212,8 @@ class _ActionButton extends StatelessWidget {
   final String label;
   final ontap;
 
-  const _ActionButton({required this.icon, required this.label,required  this.ontap});
+  const _ActionButton(
+      {required this.icon, required this.label, required this.ontap});
   @override
   Widget build(BuildContext context) {
     return ElevatedButton.icon(
