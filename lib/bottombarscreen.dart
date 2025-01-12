@@ -44,7 +44,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite),
-            label: 'Favorite',
+            label: 'Donate',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.location_on),

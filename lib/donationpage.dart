@@ -11,7 +11,7 @@ class DonationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xFFD9C3A3), // Beige color
+        backgroundColor:Colors.amber[100], // Beige color
         elevation: 0,
         // leading: IconButton(
         //   icon: Icon(Icons.arrow_back, color: Colors.black),

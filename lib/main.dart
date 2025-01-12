@@ -2,8 +2,10 @@
 
 import 'package:crisisconnect1/bottombarscreen.dart';
 import 'package:crisisconnect1/donationpage.dart';
+import 'package:crisisconnect1/homescreen.dart';
 import 'package:crisisconnect1/loginpage.dart';
 import 'package:crisisconnect1/mapScreen.dart';
+import 'package:crisisconnect1/signup.dart';
 import 'package:flutter/material.dart';
 
 
@@ -19,7 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
      
-      home:BottomBarScreen(),
+      home:Signup(),
       debugShowCheckedModeBanner: false,
      
     );

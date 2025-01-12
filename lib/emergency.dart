@@ -81,7 +81,7 @@ class EmergencyScreen extends StatelessWidget {
           // Add call functionality if needed
         },
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.amber[300],
+          backgroundColor: Colors.amber[100],
           padding: const EdgeInsets.symmetric(vertical: 16),
           minimumSize: const Size(double.infinity, 50), // Ensures equal width and height
         ),

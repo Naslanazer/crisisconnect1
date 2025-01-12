@@ -1,3 +1,6 @@
+import 'package:crisisconnect1/bottombarscreen.dart';
+import 'package:crisisconnect1/homescreen.dart';
+import 'package:crisisconnect1/signup.dart';
 import 'package:flutter/material.dart';
 
 class Loginpage extends StatefulWidget {
@@ -11,32 +14,111 @@ class _LoginpageState extends State<Loginpage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:Center(
-        child: SizedBox(
-          height: 300,width: 200,
-          child: Column(
-            children: [
-              const Text('Login'),
-              const SizedBox(height: 30,),
-              TextFormField(
-                 decoration: const InputDecoration(
-                  labelText: 'Enter your username',
-                  border: OutlineInputBorder(),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color(0xFFD4A373), Colors.white],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: Center(
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  'CrisisConnect',
+                  style: TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF5C3A21),
+                  ),
                 ),
-                
-              ),
-              const SizedBox(height: 30,),
-                 TextFormField(
-                 decoration: const InputDecoration(
-                  labelText: 'Password',
-                  border: OutlineInputBorder(),
-                ), 
-              ),
-              const SizedBox(height: 30,),
-              ElevatedButton(onPressed: (){}, child: const Text('Login')),
-              const Text('Create an account'),
-          
-            ] 
+                const SizedBox(height: 40),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Center(
+                        child: const Text(
+                          'Login',
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      TextFormField(
+                        decoration: InputDecoration(
+                          labelText: 'Username',
+                          labelStyle: const TextStyle(color: Colors.black54),
+                          filled: true,
+                          fillColor: const Color(0xFFF8E8D8),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: BorderSide.none,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      TextFormField(
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          labelText: 'Password',
+                          labelStyle: const TextStyle(color: Colors.black54),
+                          filled: true,
+                          fillColor: const Color(0xFFF8E8D8),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: BorderSide.none,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          onPressed: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => BottomBarScreen(),));
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0xFFD4A373),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            padding: const EdgeInsets.symmetric(vertical: 16),
+                          ),
+                          child: const Text(
+                            'Log in',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Center(
+                        child: TextButton(
+                          onPressed: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => Signup(),));
+                          },
+                          child: const Text(
+                            'Create an account',
+                            style: TextStyle(color: Colors.black54),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

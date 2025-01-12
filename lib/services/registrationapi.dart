@@ -1,37 +1,30 @@
 import 'package:dio/dio.dart';
 
-Future<void> performSignup(data) async {
-  final Dio dio = Dio();
-  final String signupUrl = "https://example.com/api/signup";
-
- 
+Future<void> registerUser(String name, String email, String password,String age,String gender,String phone,String address,String skill) async {
+  Dio dio = Dio();
 
   try {
-    final Response response = await dio.post(
-      signupUrl,
-      data: data,
-      options: Options(
-        headers: {
-          "Content-Type": "application/json",
-        },
-      ),
+    Response response = await dio.post(
+      'https://your-api-endpoint.com/register',  // Replace with your registration API endpoint
+      data: {
+        'name': name,
+        'email': email,
+        'password': password,
+        'age':age,
+        'gender':gender,
+        'phone':phone,
+        'address':address,
+        'skill':skill,
+
+      },
     );
 
-    if (response.statusCode == 200 || response.statusCode == 201) {
-      final data = response.data;
-      print("Signup successful! Message: ${data['message']}");
+    if (response.statusCode == 200) {
+      print('Registration successful: ${response.data}');
     } else {
-      print("Signup failed: ${response.data['message']}");
-    }
-  } on DioException catch (e) {
-    if (e.response != null) {
-      // Server error
-      print("Error: ${e.response?.data['message'] ?? 'Unknown error'}");
-    } else {
-      // Connection error or timeout
-      print("Failed to connect to the server. Please try again.");
+      print('Failed to register: ${response.data}');
     }
   } catch (e) {
-    print("An unexpected error occurred: $e");
+    print('Error: $e');
   }
 }

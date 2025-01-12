@@ -2,6 +2,7 @@ import 'package:crisisconnect1/complaint.dart';
 import 'package:crisisconnect1/customeWidgets/chart.dart';
 import 'package:crisisconnect1/emergency.dart';
 import 'package:crisisconnect1/loginpage.dart';
+import 'package:crisisconnect1/profile.dart';
 import 'package:crisisconnect1/updatepage.dart';
 import 'package:flutter/material.dart';
 
@@ -13,11 +14,11 @@ class Homescreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: const Color(0xFFD2B48C), // Beige color
+        backgroundColor: Colors.amber[100], // Beige color
         title:  Text(
           "CrisisConnect",
           style: TextStyle(
-            color: Colors.brown,
+            color: Color(0xFF5C3A21),
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -25,14 +26,14 @@ class Homescreen extends StatelessWidget {
       ),
 
       drawer: Drawer(
-        child: Column(
+        child: Column(mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            UserAccountsDrawerHeader(
+            UserAccountsDrawerHeader(decoration: BoxDecoration(color: Color(0xFFD2A671)),
               accountName: Text("Username"),
               accountEmail: Text("nsla123@gmail.com"),
-              currentAccountPicture: CircleAvatar(
-                backgroundImage: AssetImage("assets/images/flood.jpg"),
-              ),
+              // currentAccountPicture: CircleAvatar(
+              //   // backgroundImage: AssetImage("assets/images/flood.jpg"),
+              // ),
             ),
             ListTile(
               leading: Icon(Icons.home),
@@ -45,17 +46,10 @@ class Homescreen extends StatelessWidget {
               leading: Icon(Icons.person),
               title: Text("Profile"),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen(),));
               },
             ),
             ListTile(
-              leading: Icon(Icons.settings),
-              title: Text("Settings"),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-                        ListTile(
               leading: Icon(Icons.update),
               title: Text("Updates"),
               onTap: () {

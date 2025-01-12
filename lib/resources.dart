@@ -58,9 +58,9 @@ class SupplyResourcesScreen extends StatelessWidget {
                   backgroundColor: Colors.brown,
                   padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
                 ),
-                child: const Text(
+                child: Text(
                   'Donate',
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: Colors.amber[100]),
                 ),
               ),
             ),

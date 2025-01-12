@@ -33,13 +33,13 @@ class ProfileScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Center(
-                child: CircleAvatar(
-                  radius: 50,
-                  backgroundImage: const AssetImage('assets/default_profile.png'), // Replace with your default image asset path
-                  backgroundColor: Colors.grey[300],
-                ),
-              ),
+              // Center(
+              //   child: CircleAvatar(
+              //     radius: 50,
+              //     backgroundImage: const AssetImage('assets/default_profile.png'), // Replace with your default image asset path
+              //     backgroundColor: Colors.grey[300],
+              //   ),
+              // ),
               const SizedBox(height: 16),
               buildTextField('Name'),
               buildTextField('Age'),

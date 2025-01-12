@@ -52,7 +52,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
         child: Container(
           width: double.infinity,
           decoration: BoxDecoration(
-            color: Colors.blue[50],  // Set background color of the screen
+            color: const Color(0xFFF8E8D8),  // Set background color of the screen
             borderRadius: BorderRadius.circular(20), // Rounded corners
             boxShadow: [
               BoxShadow(
@@ -118,7 +118,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 ElevatedButton(
                   onPressed: processPayment,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.amber, // Background color
+                    backgroundColor:  const Color(0xFFD4A373), // Background color
                     padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 50),
                     textStyle: const TextStyle(fontSize: 18),
                   ),
@@ -157,7 +157,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 ElevatedButton(
                   onPressed: processPayment,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.amber, // Background color
+                    backgroundColor: const Color(0xFFD4A373), // Background color
                     padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 50),
                     textStyle: const TextStyle(fontSize: 18),
                   ),
