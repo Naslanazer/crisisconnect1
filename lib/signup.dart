@@ -158,9 +158,11 @@ class _SignupState extends State<Signup> {
                       ),
                       const SizedBox(height: 20),
 
-                      // Volunteer Checkbox
+                      
                       Row(
                         children: [
+
+                          Text("Are you a volunteer?"),
                           Checkbox(
                             value: isVolunteer,
                             onChanged: (val) {

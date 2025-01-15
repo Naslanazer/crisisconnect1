@@ -1,11 +1,12 @@
+import 'package:crisisconnect1/services/registrationapi.dart';
 import 'package:dio/dio.dart';
 
 
 int?  lid;
 
 Future<void> performLogin(String email, String password) async {
-  final Dio dio = Dio();
-  final String loginUrl = "https://example.com/api/login";
+ 
+
 
   if (email.isEmpty || password.isEmpty) {
     print("Please fill in all fields.");
@@ -14,7 +15,7 @@ Future<void> performLogin(String email, String password) async {
 
   try {
     final Response response = await dio.post(
-      loginUrl,
+      '$baseurl/login',
       data: {
         "email": email,
         "password": password,

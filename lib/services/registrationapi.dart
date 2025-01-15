@@ -1,11 +1,14 @@
 import 'package:dio/dio.dart';
 
+Dio dio = Dio();
+ final  baseurl=" 192.168.1.84:5000";
+
 Future<void> registerUser(String name, String email, String password,String age,String gender,String phone,String address,String skill) async {
-  Dio dio = Dio();
+  
 
   try {
     Response response = await dio.post(
-      'https://your-api-endpoint.com/register',  // Replace with your registration API endpoint
+      '$baseurl/register',  // Replace with your registration API endpoint
       data: {
         'name': name,
         'email': email,

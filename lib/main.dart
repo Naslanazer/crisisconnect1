@@ -6,6 +6,8 @@ import 'package:crisisconnect1/homescreen.dart';
 import 'package:crisisconnect1/loginpage.dart';
 import 'package:crisisconnect1/mapScreen.dart';
 import 'package:crisisconnect1/signup.dart';
+import 'package:crisisconnect1/task.dart';
+import 'package:crisisconnect1/volunteerhome.dart';
 import 'package:flutter/material.dart';
 
 
@@ -21,7 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
      
-      home:Signup(),
+      home:Volunteerhome(),
       debugShowCheckedModeBanner: false,
      
     );

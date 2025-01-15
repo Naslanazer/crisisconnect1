@@ -3,6 +3,7 @@ import 'package:crisisconnect1/donationpage.dart';
 import 'package:crisisconnect1/homescreen.dart';
 import 'package:crisisconnect1/mapScreen.dart';
 import 'package:crisisconnect1/profile.dart';
+import 'package:crisisconnect1/task.dart';
 import 'package:flutter/material.dart';
 
 
@@ -21,6 +22,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
     const DonationPage(),
      WebViewScreen(),
     const ProfileScreen(),
+    const Volunteer(),
   ];
 
   @override
@@ -71,7 +73,7 @@ class FavoriteScreen extends StatelessWidget {
         backgroundColor: Colors.amber[100],
         elevation: 0,
         title: const Text(
-          'Favorite',
+          'Donate',
           style: TextStyle(
             color: Colors.brown,
             fontWeight: FontWeight.bold,
@@ -81,7 +83,7 @@ class FavoriteScreen extends StatelessWidget {
       ),
       body: const Center(
         child: Text(
-          'Favorite Screen',
+          'Donation Screen',
           style: TextStyle(fontSize: 18, color: Colors.brown),
         ),
       ),

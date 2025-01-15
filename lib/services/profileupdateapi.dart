@@ -15,6 +15,7 @@ Future<void> updateUserProfile({
   }
 
   try {
+    
     final Response response = await dio.put(
       profileUrl,
       data: {
