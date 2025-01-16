@@ -1,16 +1,20 @@
 import 'package:crisisconnect1/bottombarscreen.dart';
 import 'package:crisisconnect1/homescreen.dart';
+import 'package:crisisconnect1/services/loginapi.dart';
 import 'package:crisisconnect1/signup.dart';
 import 'package:flutter/material.dart';
 
 class Loginpage extends StatefulWidget {
-  const Loginpage({super.key});
+   Loginpage({super.key});
 
   @override
   State<Loginpage> createState() => _LoginpageState();
 }
 
 class _LoginpageState extends State<Loginpage> {
+
+  TextEditingController emailController = TextEditingController();
+TextEditingController passwordCntrol=TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,6 +57,7 @@ class _LoginpageState extends State<Loginpage> {
                       ),
                       const SizedBox(height: 20),
                       TextFormField(
+                        controller: emailController,
                         decoration: InputDecoration(
                           labelText: 'Username',
                           labelStyle: const TextStyle(color: Colors.black54),
@@ -66,6 +71,7 @@ class _LoginpageState extends State<Loginpage> {
                       ),
                       const SizedBox(height: 20),
                       TextFormField(
+                        controller: passwordCntrol,
                         obscureText: true,
                         decoration: InputDecoration(
                           labelText: 'Password',
@@ -83,7 +89,8 @@ class _LoginpageState extends State<Loginpage> {
                         width: double.infinity,
                         child: ElevatedButton(
                           onPressed: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => BottomBarScreen(),));
+                            performLogin(emailController.text, passwordCntrol.text,context);
+                              // Navigator.push(context, MaterialPageRoute(builder: (context) => BottomBarScreen(),));
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(0xFFD4A373),
@@ -106,6 +113,7 @@ class _LoginpageState extends State<Loginpage> {
                       Center(
                         child: TextButton(
                           onPressed: () {
+                           
                               Navigator.push(context, MaterialPageRoute(builder: (context) => Signup(),));
                           },
                           child: const Text(

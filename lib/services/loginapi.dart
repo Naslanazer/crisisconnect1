@@ -1,10 +1,15 @@
+import 'package:crisisconnect1/bottombarscreen.dart';
+import 'package:crisisconnect1/homescreen.dart';
 import 'package:crisisconnect1/services/registrationapi.dart';
+import 'package:crisisconnect1/volunteerbar.dart';
+import 'package:crisisconnect1/volunteerhome.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 
 
 int?  lid;
 
-Future<void> performLogin(String email, String password) async {
+Future<void> performLogin(String email, String password,context) async {
  
 
 
@@ -15,9 +20,9 @@ Future<void> performLogin(String email, String password) async {
 
   try {
     final Response response = await dio.post(
-      '$baseurl/login',
+      '$baseUrl/LoginAPI',
       data: {
-        "email": email,
+        "username": email,
         "password": password,
       },
       options: Options(
@@ -26,11 +31,30 @@ Future<void> performLogin(String email, String password) async {
         },
       ),
     );
-
-    if (response.statusCode == 200) {
+    print(response.data);
+    if (response.statusCode == 200&&response.data['message']=='success') {
       final data = response.data;
-       lid = data['lid']; // Assuming the API returns a token
+       lid = data['login_id']; // Assuming the API returns a token
       print("Login successful! Token: $lid");
+
+
+    if (data['user_type']=='volunteer') {
+      
+Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => Volunteerbar()),
+  );
+
+
+    }else{
+Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => BottomBarScreen()),
+  );
+      
+    }
+
+
     } else {
       print("Login failed: ${response.data['message']}");
     }

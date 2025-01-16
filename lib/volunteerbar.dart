@@ -4,24 +4,26 @@ import 'package:crisisconnect1/homescreen.dart';
 import 'package:crisisconnect1/mapScreen.dart';
 import 'package:crisisconnect1/profile.dart';
 import 'package:crisisconnect1/task.dart';
+import 'package:crisisconnect1/volunteerhome.dart';
 import 'package:flutter/material.dart';
 
 
 
-class BottomBarScreen extends StatefulWidget {
-  const BottomBarScreen({super.key});
+class Volunteerbar extends StatefulWidget {
+  const Volunteerbar({super.key});
 
   @override
-  _BottomBarScreenState createState() => _BottomBarScreenState();
+  _VolunteerbarState createState() => _VolunteerbarState();
 }
 
-class _BottomBarScreenState extends State<BottomBarScreen> {
+class _VolunteerbarState extends State<Volunteerbar> {
   int _currentIndex = 0;
   final List<Widget> _screens = [
-    const Homescreen(),
+    const Volunteerhome(),
     const DonationPage(),
      WebViewScreen(),
     const ProfileScreen(),
+    const Volunteer(),
   ];
 
   @override

@@ -27,44 +27,46 @@ class SupplyResourcesScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'Supply Resources',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.brown,
-              ),
-            ),
-            const SizedBox(height: 5),
-            const Text(
-              'Add a little bit of body text here...',
-              style: TextStyle(fontSize: 14, color: Colors.black54),
-            ),
-            const SizedBox(height: 5),
-            buildDropdownField('Select items'),
-            buildTextField('Quantity'),
-            buildTextField('Details'),
-            buildTextField('Date'),
-            const SizedBox(height: 5),
-            Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  // Submit functionality
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.brown,
-                  padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
-                ),
-                child: Text(
-                  'Donate',
-                  style: TextStyle(color: Colors.amber[100]),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Supply Resources',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.brown,
                 ),
               ),
-            ),
-          ],
+              const SizedBox(height: 5),
+              const Text(
+                'Add a little bit of body text here...',
+                style: TextStyle(fontSize: 14, color: Colors.black54),
+              ),
+              const SizedBox(height: 5),
+              buildDropdownField('Select items'),
+              buildTextField('Quantity'),
+              buildTextField('Details'),
+              buildTextField('Date'),
+              const SizedBox(height: 5),
+              Center(
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Submit functionality
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.brown,
+                    padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+                  ),
+                  child: Text(
+                    'Donate',
+                    style: TextStyle(color: Colors.amber[100]),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
       // bottomNavigationBar: BottomNavigationBar(

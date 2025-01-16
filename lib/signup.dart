@@ -1,4 +1,5 @@
 import 'package:crisisconnect1/loginpage.dart';
+import 'package:crisisconnect1/services/registrationapi.dart';
 import 'package:flutter/material.dart';
 
 class Signup extends StatefulWidget {
@@ -227,13 +228,30 @@ class _SignupState extends State<Signup> {
                         width: double.infinity,
                         child: ElevatedButton(
                           onPressed: () {
+Map<String,dynamic>data={
+  'Name':_nameController.text,
+   'Username': _usernameController.text,
+      'Password':_passwordController.text,
+      'age': _ageController.text,
+      'Gender': selectedGender,
+      'Address': _addressController.text,
+      'Type': isVolunteer?'volunteer':'user',
+      'Skill': selectedSkill,
+      'Email': _emailController.text,
+      'Phone':_phoneController.text,
+
+      
+};
+
+                            registerUserApi(data,context);
                             // Add your signup logic here
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => Loginpage(),
-                              ),
-                            );
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //     builder: (context) => Loginpage(),
+                            //   ),
+                            // );
+
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(0xFFD2A671),
