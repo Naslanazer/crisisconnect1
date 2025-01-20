@@ -1,7 +1,13 @@
+import 'package:crisisconnect1/services/addresourceapi.dart';
+import 'package:crisisconnect1/services/loginapi.dart';
 import 'package:flutter/material.dart';
 
 class SupplyResourcesScreen extends StatelessWidget {
-  const SupplyResourcesScreen({super.key});
+   SupplyResourcesScreen({super.key});
+  TextEditingController quantityController = TextEditingController();
+  TextEditingController detailsController = TextEditingController();
+  String name = 'Food';
+
 
   @override
   Widget build(BuildContext context) {
@@ -46,18 +52,22 @@ class SupplyResourcesScreen extends StatelessWidget {
               ),
               const SizedBox(height: 5),
               buildDropdownField('Select items'),
-              buildTextField('Quantity'),
-              buildTextField('Details'),
-              buildTextField('Date'),
+              buildTextField('Quantity',quantityController),
+              buildTextField('Details',detailsController),
+              // buildTextField('Date'),
               const SizedBox(height: 5),
               Center(
                 child: ElevatedButton(
                   onPressed: () {
+                    addResource(
+                        data: {'LOGIN':lid , 'Name': name, 'Quantity': quantityController.text, 'Details':detailsController.text, 'Date':DateTime.now().toString().substring(0,10)},
+                        context: context);
                     // Submit functionality
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.brown,
-                    padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 32, vertical: 12),
                   ),
                   child: Text(
                     'Donate',
@@ -91,7 +101,7 @@ class SupplyResourcesScreen extends StatelessWidget {
     );
   }
 
-  Widget buildTextField(String labelText) {
+  Widget buildTextField(String labelText,controller) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -100,7 +110,8 @@ class SupplyResourcesScreen extends StatelessWidget {
           style: const TextStyle(fontSize: 16, color: Colors.brown),
         ),
         const SizedBox(height: 5),
-        const TextField(
+         TextField(
+          controller: controller,
           decoration: InputDecoration(
             border: OutlineInputBorder(),
           ),
@@ -136,6 +147,7 @@ class SupplyResourcesScreen extends StatelessWidget {
           ],
           onChanged: (value) {
             // Handle change
+            name=value!;
           },
           decoration: const InputDecoration(
             border: OutlineInputBorder(),

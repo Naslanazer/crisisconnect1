@@ -1,13 +1,12 @@
+import 'package:crisisconnect1/services/loginapi.dart';
+import 'package:crisisconnect1/services/registrationapi.dart';
 import 'package:dio/dio.dart';
 
-Future<void> fetchUserProfile(String userId) async {
-  final Dio dio = Dio();
-  final String profileUrl = "https://example.com/api/profile/$userId";
 
-  if (userId.isEmpty) {
-    print("Invalid user ID.");
-    return;
-  }
+Map<String,dynamic> profiledata={};
+Future<void> fetchUserProfile() async {
+  final Dio dio = Dio();
+  final String profileUrl = "$baseUrl/UserAPI/$lid";
 
   try {
     final Response response = await dio.get(
@@ -21,19 +20,13 @@ Future<void> fetchUserProfile(String userId) async {
 
     if (response.statusCode == 200) {
       final data = response.data;
-      print("Profile fetched successfully!");
-      print("Name: ${data['name']}");
-      print("Email: ${data['email']}");
-      print("Avatar: ${data['avatar']}");
-    } else {
-      print("Failed to fetch profile: ${response.data['message']}");
+      profiledata=data;
+      print(data);
+      } else {
+      print("Failed to fetch profile: ${response.data}");
     }
   } on DioException catch (e) {
-    if (e.response != null) {
-      print("Error: ${e.response?.data['message'] ?? 'Unknown error'}");
-    } else {
-      print("Failed to connect to the server. Please try again.");
-    }
+   print(e);
   } catch (e) {
     print("An unexpected error occurred: $e");
   }

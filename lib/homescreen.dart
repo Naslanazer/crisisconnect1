@@ -3,6 +3,8 @@ import 'package:crisisconnect1/customeWidgets/chart.dart';
 import 'package:crisisconnect1/emergency.dart';
 import 'package:crisisconnect1/loginpage.dart';
 import 'package:crisisconnect1/profile.dart';
+import 'package:crisisconnect1/services/profilefetchapi.dart';
+import 'package:crisisconnect1/services/updatesapi.dart';
 import 'package:crisisconnect1/updatepage.dart';
 import 'package:flutter/material.dart';
 
@@ -45,18 +47,21 @@ class Homescreen extends StatelessWidget {
             ListTile(
               leading: Icon(Icons.person),
               title: Text("Profile"),
-              onTap: () {
+              onTap: () async{
+
+            
                 Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen(),));
               },
             ),
             ListTile(
               leading: Icon(Icons.update),
               title: Text("Updates"),
-              onTap: () {
+              onTap: () async{
+      Map<String,dynamic>updates=     await    updateResource();
                    Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => UpdatesScreen(),
+                        builder: (context) => UpdatesScreen(updates:updates),
                       ));
               },
             ),
@@ -117,11 +122,12 @@ class Homescreen extends StatelessWidget {
             const SizedBox(height: 24),
             Center(
               child: InkWell(
-                onTap: () {
-                  Navigator.push(
+                onTap: ()async {
+                Map<String,dynamic>updates=     await    updateResource();
+                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => UpdatesScreen(),
+                        builder: (context) => UpdatesScreen(updates:updates),
                       ));
                 },
                 child: Text(
@@ -140,7 +146,7 @@ class Homescreen extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const ReportIssueScreen()));
+                            builder: (context) =>  ReportIssueScreen()));
                   },
                   icon: Icons.edit,
                   label: "Report \na crisis",

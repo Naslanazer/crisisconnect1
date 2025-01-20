@@ -1,21 +1,21 @@
+import 'package:crisisconnect1/services/loginapi.dart';
+import 'package:crisisconnect1/services/registrationapi.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 
-Future<void> submitComplaint(String userId, String title, String description) async {
+Future<void> submitComplaint(String title,context ) async {
   final Dio dio = Dio();
-  final String complaintsUrl = "https://example.com/api/complaints";
+  final String complaintsUrl = "$baseUrl/ComplaintAPI";
 
-  if (userId.isEmpty || title.isEmpty || description.isEmpty) {
-    print("Please fill in all fields.");
-    return;
-  }
+ 
 
   try {
     final Response response = await dio.post(
       complaintsUrl,
       data: {
-        "userId": userId,
-        "title": title,
-        "description": description,
+        "Complaint":title,
+        'USER':lid,
+       
       },
       options: Options(
         headers: {
@@ -26,7 +26,14 @@ Future<void> submitComplaint(String userId, String title, String description) as
 
     if (response.statusCode == 200 || response.statusCode == 201) {
       final data = response.data;
-      print("Complaint submitted successfully! Reference ID: ${data['referenceId']}");
+     
+     ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Complaint submitted successfully!"),
+          backgroundColor: Colors.green,
+        ),
+      );
+      Navigator.pop(context); 
     } else {
       print("Failed to submit complaint: ${response.data['message']}");
     }

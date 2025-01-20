@@ -1,8 +1,9 @@
+import 'package:crisisconnect1/services/registrationapi.dart';
 import 'package:flutter/material.dart';
 
 class UpdatesScreen extends StatelessWidget {
-  const UpdatesScreen({super.key});
-
+  const UpdatesScreen({super.key,required this.updates});
+final updates;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +37,7 @@ class UpdatesScreen extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10),
                   child: Image.network(
-                    'https://media.istockphoto.com/id/1062305448/photo/hurricane-season.jpg?s=612x612&w=0&k=20&c=mvCo41hEr7gH55hJc8YHv3SRnZJbZrsg31JhnnWS_80=', // Replace with your image URL
+                    '$baseUrl/${updates['Image']}', // Replace with your image URL
                     height: 200,
                     width: double.infinity,
                     fit: BoxFit.cover,
@@ -44,16 +45,26 @@ class UpdatesScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              const Text(
-                'Disaster :',
+               Text(
+                'Disaster : ${updates['Disaster']}',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
                   color: Colors.brown,
                 ),
               ),
-              const Text(
-                'Date:',
+
+
+               Text(
+                'Location : ${updates['Location']}',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                  color: Colors.brown,
+                ),
+              ),
+               Text(
+                'Date: ${updates['created_at'].toString().substring(0,10)}',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
@@ -69,8 +80,8 @@ class UpdatesScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 10),
-              const Text(
-                'According to Wikipedia, a paragraph is a self-contained unit of a discourse in writing dealing with a particular point or idea. A paragraph consists of one or more sentences. Though not required by the syntax of any language, paragraphs are usually an expected part of formal writing, used to organise longer prose.',
+               Text(
+               '${updates['Details']}',
                 style: TextStyle(fontSize: 14, color: Colors.black87),
               ),
               const SizedBox(height: 20),
@@ -83,8 +94,8 @@ class UpdatesScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 10),
-              const Text(
-                'According to Wikipedia, a paragraph is a self-contained unit of a discourse in writing dealing with a particular point or idea. A paragraph consists of one or more sentences.',
+               Text(
+                '${updates['Weather']}',
                 style: TextStyle(fontSize: 14, color: Colors.black87),
               ),
             ],

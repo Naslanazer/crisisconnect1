@@ -25,7 +25,7 @@ class DonationPage extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: const Column(
+      body:  Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(height: 20),

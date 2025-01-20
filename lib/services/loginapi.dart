@@ -40,14 +40,14 @@ Future<void> performLogin(String email, String password,context) async {
 
     if (data['user_type']=='volunteer') {
       
-Navigator.push(
+Navigator.pushReplacement(
     context,
     MaterialPageRoute(builder: (context) => Volunteerbar()),
   );
 
 
     }else{
-Navigator.push(
+Navigator.pushReplacement(
     context,
     MaterialPageRoute(builder: (context) => BottomBarScreen()),
   );

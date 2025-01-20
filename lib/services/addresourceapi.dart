@@ -1,26 +1,19 @@
+import 'package:crisisconnect1/services/registrationapi.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 
 Future<void> addResource({
-  required String title,
-  required String type, // E.g., "document", "video", etc.
-  required String url,  // URL or location of the resource
+ data ,context // URL or location of the resource
 }) async {
   final Dio dio = Dio();
-  final String resourcesUrl = "https://example.com/api/resources";
+  final String resourcesUrl = '$baseUrl/ResourceAPI';
 
-  if (title.isEmpty || type.isEmpty || url.isEmpty) {
-    print("Please provide valid resource details.");
-    return;
-  }
+ 
 
   try {
     final Response response = await dio.post(
       resourcesUrl,
-      data: {
-        "title": title,
-        "type": type,
-        "url": url,
-      },
+      data:data,
       options: Options(
         headers: {
           "Content-Type": "application/json",
@@ -30,6 +23,13 @@ Future<void> addResource({
 
     if (response.statusCode == 201) {
       print("Resource added successfully!");
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Resource added successfully!"),
+          backgroundColor: Colors.green,
+        ),
+      );
+      Navigator.pop(context);
     } else {
       print("Failed to add resource: ${response.data['message']}");
     }

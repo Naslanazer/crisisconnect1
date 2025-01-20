@@ -1,7 +1,9 @@
+import 'package:crisisconnect1/services/complaintapi.dart';
 import 'package:flutter/material.dart';
 
 class ReportIssueScreen extends StatelessWidget {
-  const ReportIssueScreen({super.key});
+   ReportIssueScreen({super.key});
+  TextEditingController complaintController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +44,8 @@ class ReportIssueScreen extends StatelessWidget {
                   border: Border.all(color: Colors.black),
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: const TextField(
+                child:  TextField(
+                  controller: complaintController,
                   maxLines: 6,
                   decoration: InputDecoration(
                     border: InputBorder.none,
@@ -51,32 +54,12 @@ class ReportIssueScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 16),
-              const Text(
-                'Reply',
-                style: TextStyle(fontSize: 16, color: Colors.brown),
-              ),
-              const SizedBox(height: 8),
-              const TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                ),
-              ),
-              const SizedBox(height: 16),
-              const Text(
-                'Date',
-                style: TextStyle(fontSize: 16, color: Colors.brown),
-              ),
-              const SizedBox(height: 8),
-              const TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                ),
-              ),
+             
               const SizedBox(height: 35),
               Center(
                 child: ElevatedButton(
                   onPressed: () {
-                    // Submit button functionality
+                    submitComplaint(complaintController.text,context);// Submit button functionality
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.amber[300],

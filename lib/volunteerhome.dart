@@ -3,6 +3,9 @@ import 'package:crisisconnect1/customeWidgets/chart.dart';
 import 'package:crisisconnect1/emergency.dart';
 import 'package:crisisconnect1/loginpage.dart';
 import 'package:crisisconnect1/profile.dart';
+import 'package:crisisconnect1/services/profilefetchapi.dart';
+import 'package:crisisconnect1/services/taskapi.dart';
+import 'package:crisisconnect1/services/updatesapi.dart';
 import 'package:crisisconnect1/task.dart';
 import 'package:crisisconnect1/updatepage.dart';
 import 'package:flutter/material.dart';
@@ -47,17 +50,19 @@ class Volunteerhome extends StatelessWidget {
               leading: Icon(Icons.person),
               title: Text("Profile"),
               onTap: () {
+               
                 Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen(),));
               },
             ),
             ListTile(
               leading: Icon(Icons.update),
               title: Text("Updates"),
-              onTap: () {
+              onTap: () async{
+               Map<String,dynamic>updates=     await    updateResource();
                    Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => UpdatesScreen(),
+                        builder: (context) => UpdatesScreen(updates:updates),
                       ));
               },
             ),
@@ -118,11 +123,12 @@ class Volunteerhome extends StatelessWidget {
             const SizedBox(height: 24),
             Center(
               child: InkWell(
-                onTap: () {
-                  Navigator.push(
+                onTap: ()async {
+                 Map<String,dynamic>updates=     await    updateResource();
+                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => UpdatesScreen(),
+                        builder: (context) => UpdatesScreen(updates:updates),
                       ));
                 },
                 child: Text(
@@ -141,7 +147,7 @@ class Volunteerhome extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const ReportIssueScreen()));
+                            builder: (context) =>  ReportIssueScreen()));
                   },
                   icon: Icons.edit,
                   label: "Report \na crisis",
@@ -165,14 +171,16 @@ class Volunteerhome extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 _ActionButton(
-                  ontap: () {
+                  ontap: ()async {
+            List<Map<String, dynamic>>tasks=      await  fetchTasks(context);
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const Volunteer()));
+                            builder: (context) =>  Volunteer(tasks:tasks)));
                   },
                   icon: Icons.edit,
                   label: "View tasks",
+                
                 ),
               ],
             ),

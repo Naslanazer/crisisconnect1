@@ -1,29 +1,25 @@
+import 'package:crisisconnect1/services/loginapi.dart';
+import 'package:crisisconnect1/services/registrationapi.dart';
+import 'package:crisisconnect1/services/taskapi.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 
 Future<void> performPayment({
-  required String userId,
-  required double amount,
-  required String paymentMethod,
-  required String currency,
+ 
+  required  amount,context
+  
 }) async {
   final Dio dio = Dio();
-  final String paymentUrl = "https://example.com/api/payments";
-
+  final String paymentUrl = '$baseUrl/DonationAPI/$lid/';
   // Validation for inputs
-  if (userId.isEmpty || amount <= 0 || paymentMethod.isEmpty || currency.isEmpty) {
-    print("Please provide valid payment details.");
-    return;
-  }
-
+ 
   try {
     // Sending POST request to the backend
     final Response response = await dio.post(
       paymentUrl,
       data: {
-        "userId": userId,
-        "amount": amount,
-        "paymentMethod": paymentMethod,
-        "currency": currency,
+        "Amount": amount,
+       
       },
       options: Options(
         headers: {
@@ -35,6 +31,10 @@ Future<void> performPayment({
     if (response.statusCode == 200 || response.statusCode == 201) {
       final data = response.data;
       print("Payment successful! Transaction ID: ${data['transactionId']}");
+
+      Navigator.pop(context);
+      showSuccess('payment successful',context);
+      
     } else {
       print("Payment failed: ${response.data['message']}");
     }

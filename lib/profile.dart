@@ -1,22 +1,50 @@
+import 'package:crisisconnect1/services/profilefetchapi.dart';
+import 'package:crisisconnect1/services/profileupdateapi.dart';
 import 'package:flutter/material.dart';
 
-
-
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
   @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  TextEditingController nameController = TextEditingController();
+  TextEditingController ageController = TextEditingController();
+  TextEditingController genderController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController addressController = TextEditingController();
+  TextEditingController skillController = TextEditingController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    fetch();
+    super.initState();
+  }
+
+  void fetch() async {
+    await fetchUserProfile();
+    setState(() {});
+  }
+
+  @override
   Widget build(BuildContext context) {
+    nameController.text = profiledata['Name'];
+    ageController.text = profiledata['age'].toString();
+    genderController.text = profiledata['Gender'];
+    phoneController.text = profiledata['Phone'].toString();
+    emailController.text = profiledata['Email'];
+    addressController.text = profiledata['Address'];
+    skillController.text = profiledata['Skill'];
+
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.amber[100],
         elevation: 0,
-        // leading: IconButton(
-        //   icon: Icon(Icons.arrow_back, color: Colors.black),
-        //   onPressed: () {
-        //     // Navigate back
-        //   },
-        // ),
         title: const Text(
           'Profile',
           style: TextStyle(
@@ -41,22 +69,33 @@ class ProfileScreen extends StatelessWidget {
               //   ),
               // ),
               const SizedBox(height: 16),
-              buildTextField('Name'),
-              buildTextField('Age'),
-              buildTextField('Gender'),
-              buildTextField('Phone'),
-              buildTextField('Email'),
-              buildTextField('Address'),
-              buildTextField('Skill'),
+              buildTextField('Name', nameController),
+              buildTextField('Age', ageController),
+              buildTextField('Gender', genderController),
+              buildTextField('Phone', phoneController),
+              buildTextField('Email', emailController),
+              buildTextField('Address', addressController),
+              buildTextField('Skill', skillController),
               const SizedBox(height: 24),
               Center(
                 child: ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
+                    await updateUserProfile(data: {
+                      'Name': nameController.text,
+                      'age': ageController.text,
+                      'Gender': genderController.text,
+                      'Phone': phoneController.text,
+                      'Email': emailController.text,
+                      'Address': addressController.text,
+                    }, context: context);
+                     await fetchUserProfile();
+                    setState(() {});
                     // Save profile functionality
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.amber[300],
-                    padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 32, vertical: 12),
                   ),
                   child: const Text(
                     'Save',
@@ -68,11 +107,10 @@ class ProfileScreen extends StatelessWidget {
           ),
         ),
       ),
-     
     );
   }
 
-  Widget buildTextField(String labelText) {
+  Widget buildTextField(String labelText, controller) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -81,7 +119,8 @@ class ProfileScreen extends StatelessWidget {
           style: const TextStyle(fontSize: 16, color: Colors.brown),
         ),
         const SizedBox(height: 8),
-        const TextField(
+        TextField(
+          controller: controller,
           decoration: InputDecoration(
             border: OutlineInputBorder(),
           ),
