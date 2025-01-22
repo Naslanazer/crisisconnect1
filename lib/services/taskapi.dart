@@ -27,25 +27,26 @@ print(response.data);
   }
 
   Future<void> markTaskAsComplete(String taskId,context) async {
-    String url = '$baseUrl/TaskAPI';
+    String url = '$baseUrl/TaskupdateAPI';
     try {
-      Response response = await _dio.post(
-        url,
-        options: Options(
-          headers: {
-            'Authorization': 'Bearer YOUR_TOKEN', // Add authentication if required
-          },
-        ),
+      Response response = await _dio.put(
+        url,data: {
+          'task_id': taskId,
+          'Status':'completed',
+        }
+      
       );
 
       if (response.statusCode == 200) {
         fetchTasks(context); // Refresh task list after completion
         showSuccess('Task marked as completed',context);
       } else {
-        showError('Failed to mark task as complete. Error: ${response.statusCode}',context);
+        // showError('Failed to mark task as complete. Error: ${response.statusCode}',context);
+        print(response.data);
       }
     } catch (e) {
-      showError('Failed to complete task. Error: $e',context);
+        print(e);
+      // showError('Failed to complete task. Error: $e',context);
     }
   }
 
