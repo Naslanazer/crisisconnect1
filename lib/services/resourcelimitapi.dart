@@ -3,13 +3,13 @@ import 'package:crisisconnect1/services/registrationapi.dart';
 import 'package:dio/dio.dart';
 
 
-Map<String,dynamic> profiledata={};
+List<Map<String,dynamic>> resourcedata=[];
 Future<void> resourcelimit() async {
   final Dio dio = Dio();
   final String profileUrl = "$baseUrl/ResourcelimitAPI";
 
   try {
-    final Response response = await dio.get(
+    final Response response = await dio.get( 
       profileUrl,
       options: Options(
         headers: {
@@ -20,7 +20,7 @@ Future<void> resourcelimit() async {
 
     if (response.statusCode == 200) {
       final data = response.data;
-      profiledata=data;
+      resourcedata=List<Map<String,dynamic>>.from(response.data);
       print(data);
       } else {
       print("Failed to fetch profile: ${response.data}");

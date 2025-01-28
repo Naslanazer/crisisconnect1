@@ -3,8 +3,11 @@ import 'package:crisisconnect1/customeWidgets/chart.dart';
 import 'package:crisisconnect1/emergency.dart';
 import 'package:crisisconnect1/loginpage.dart';
 import 'package:crisisconnect1/profile.dart';
+import 'package:crisisconnect1/services/loginapi.dart';
 import 'package:crisisconnect1/services/profilefetchapi.dart';
+import 'package:crisisconnect1/services/registrationapi.dart';
 import 'package:crisisconnect1/services/updatesapi.dart';
+import 'package:crisisconnect1/services/volunteercountapi.dart';
 import 'package:crisisconnect1/updatepage.dart';
 import 'package:flutter/material.dart';
 
@@ -31,8 +34,8 @@ class Homescreen extends StatelessWidget {
         child: Column(mainAxisAlignment: MainAxisAlignment.start,
           children: [
             UserAccountsDrawerHeader(decoration: BoxDecoration(color: Color(0xFFD2A671)),
-              accountName: Text("Username"),
-              accountEmail: Text("nsla123@gmail.com"),
+              accountName: Text(volunteerusername),
+              accountEmail: Text("$volunteerusername@gmail.com"),
               // currentAccountPicture: CircleAvatar(
               //   // backgroundImage: AssetImage("assets/images/flood.jpg"),
               // ),
@@ -85,24 +88,24 @@ class Homescreen extends StatelessWidget {
               "Welcome back!",
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
-            const Text(
-              "Username",
+             Text(
+              volunteerusername,
               style: TextStyle(fontSize: 20, color: Colors.brown),
             ),
             const SizedBox(height: 16),
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
-              child: Image.asset(
-                "assets/images/flood.jpg", // Replace with the path to your asset image
+              child: Image.network(
+                "$baseUrl${disasterdata['Image']}", // Replace with the path to your asset image
                 height: 200,
                 width: double.infinity,
                 fit: BoxFit.cover,
               ),
             ),
             const SizedBox(height: 8),
-            const Center(
-              child: Text(
-                "Heavy rainfall expected in the south eastern region.",
+             Center(
+             
+                child: Text('${disasterdata['Details']??""}',
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
               ),
             ),
@@ -112,11 +115,11 @@ class Homescreen extends StatelessWidget {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
-            const Row(
+             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                _StatusCard(label: "Volunteers", value: "151"),
-                _StatusCard(label: "Donations", value: "15k+"),
+              children: [    
+                _StatusCard(label: "Volunteers", value: '${volentercount['volunteercount']??0}'),
+                _StatusCard(label: "Donations", value: '${disasterdata['total_donation']??0}'),
               ],
             ),
             const SizedBox(height: 24),

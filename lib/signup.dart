@@ -1,5 +1,6 @@
 import 'package:crisisconnect1/loginpage.dart';
 import 'package:crisisconnect1/services/registrationapi.dart';
+import 'package:crisisconnect1/services/skillapi.dart';
 import 'package:flutter/material.dart';
 
 class Signup extends StatefulWidget {
@@ -22,6 +23,24 @@ class _SignupState extends State<Signup> {
   final TextEditingController _ageController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _addressController = TextEditingController();
+
+  List<String> skills = [];
+
+  @override
+  void initState() {
+   fetch();
+    super.initState();
+  }
+
+  void fetch()async{
+    List<Map<String, dynamic>>skills=await fetchSkills();
+    skills.forEach((element) {
+      this.skills.add(element['skill']);
+    });
+    setState(() {
+      
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -194,11 +213,12 @@ class _SignupState extends State<Signup> {
                             fillColor: const Color(0xFFF6E9D8), // Light beige background
                             labelText: 'Choose Skill',
                           ),
-                          items: const [
-                            DropdownMenuItem(value: 'sel', child: Text('sel')),
-                            DropdownMenuItem(value: 'data', child: Text('data')),
-                            DropdownMenuItem(value: 'data1', child: Text('data1')),
-                          ],
+                          items: skills.map((String skill) {
+                            return DropdownMenuItem(
+                              value: skill,
+                              child: Text(skill),
+                            );
+                          }).toList(),
                           onChanged: (val) {
                             setState(() {
                               selectedSkill = val as String?;

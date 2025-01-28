@@ -1,6 +1,10 @@
 import 'package:crisisconnect1/bottombarscreen.dart';
 import 'package:crisisconnect1/homescreen.dart';
+import 'package:crisisconnect1/mapScreen.dart';
+import 'package:crisisconnect1/services/mapapi.dart';
 import 'package:crisisconnect1/services/registrationapi.dart';
+import 'package:crisisconnect1/services/resourcelimitapi.dart';
+import 'package:crisisconnect1/services/volunteercountapi.dart';
 import 'package:crisisconnect1/volunteerbar.dart';
 import 'package:crisisconnect1/volunteerhome.dart';
 import 'package:dio/dio.dart';
@@ -8,6 +12,12 @@ import 'package:flutter/material.dart';
 
 
 int?  lid;
+
+
+String volunteerusername = '';
+
+Map<String,dynamic>disasterdata={};
+Map<String, dynamic>volentercount={}; 
 
 Future<void> performLogin(String email, String password,context) async {
  
@@ -31,11 +41,17 @@ Future<void> performLogin(String email, String password,context) async {
         },
       ),
     );
+    volunteerusername =email;
     print(response.data);
     if (response.statusCode == 200&&response.data['message']=='success') {
       final data = response.data;
        lid = data['login_id']; // Assuming the API returns a token
       print("Login successful! Token: $lid");
+disasterdata= await getmap();
+disasterLocation=disasterdata['Location'];
+await resourcelimit();
+volentercount=await fetchCounts();
+
 
       // adsfgv
       

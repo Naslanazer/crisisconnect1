@@ -26,7 +26,7 @@ print(response.data);
     }
   }
 
-  Future<void> markTaskAsComplete(String taskId,context) async {
+  Future<void> markTaskAsComplete( taskId,context) async {
     String url = '$baseUrl/TaskupdateAPI';
     try {
       Response response = await _dio.put(

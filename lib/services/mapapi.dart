@@ -1,9 +1,10 @@
+import 'package:crisisconnect1/services/registrationapi.dart';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
  
  Dio _dio = Dio();
-  Future<List<Map<String,dynamic>>> getmap(context) async {
-    const String url = 'https://example.com/api/volunteer/tasks'; // Replace with your API URL
+  Future<Map<String,dynamic>> getmap() async {
+     String url = '$baseUrl/DisasterMapAPI'; // Replace with your API URL
     try {
       Response response = await _dio.get(
         url,
@@ -15,16 +16,17 @@ import 'package:dio/dio.dart';
       );
 
       if (response.statusCode == 200) {
+        print(response.data);
        
-        return List<Map<String,dynamic>>.from(response.data); // Assumes API returns a 'tasks' key
+        return response.data; // Assumes API returns a 'tasks' key
      
       } else {
        print('failed');
-        return[];
+        return{};
       }
     } catch (e) {
       print(e);
-      return [];
+      return {};
     }
   }
 

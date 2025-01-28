@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+String disasterLocation = 'Kozhikode';
+
 class WebViewScreen extends StatelessWidget {
   WebViewScreen({super.key});
 
@@ -24,7 +26,7 @@ class WebViewScreen extends StatelessWidget {
       ),
     )
     ..loadRequest(
-        Uri.parse('https://www.google.com/maps/search/?api=1&query=kozikode'));
+        Uri.parse('https://www.google.com/maps/search/?api=1&query=$disasterLocation'));
 
   @override
   Widget build(BuildContext context) {
