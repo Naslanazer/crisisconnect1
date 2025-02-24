@@ -1,3 +1,4 @@
+import 'package:crisisconnect1/services/loginapi.dart';
 import 'package:crisisconnect1/services/profilefetchapi.dart';
 import 'package:crisisconnect1/services/profileupdateapi.dart';
 import 'package:flutter/material.dart';
@@ -75,6 +76,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               buildTextField('Phone', phoneController),
               buildTextField('Email', emailController),
               buildTextField('Address', addressController),
+              if(usertype=='volunteer')
               buildTextField('Skill', skillController),
               const SizedBox(height: 24),
               Center(

@@ -118,7 +118,7 @@ class Volunteerhome extends StatelessWidget {
              Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-              _StatusCard(label: "Volunteers", value: '${volentercount['volunteercount']??0}'),
+              _StatusCard(label: "Volunteers", value: '${volunteercount['volunteercount']??0}'),
                 _StatusCard(label: "Donations", value: '${disasterdata['total_donation']??0}'),
               ],
             ),

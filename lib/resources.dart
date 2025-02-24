@@ -133,15 +133,19 @@ class SupplyResourcesScreen extends StatelessWidget {
         DropdownButtonFormField(
           items: const [
             DropdownMenuItem(
-              value: 'Food',
+              value: 'food',
               child: Text('Food'),
             ),
             DropdownMenuItem(
-              value: 'Clothes',
+              value: 'cloth',
               child: Text('Clothes'),
             ),
             DropdownMenuItem(
-              value: 'Medicines',
+              value: 'medicine',
+              child: Text('Medicines'),
+            ),
+            DropdownMenuItem(
+              value: 'shelter',
               child: Text('Medicines'),
             ),
           ],

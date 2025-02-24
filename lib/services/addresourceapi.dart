@@ -20,6 +20,7 @@ Future<void> addResource({
         },
       ),
     );
+    print(response.data);
 
     if (response.statusCode == 201) {
       print("Resource added successfully!");
