@@ -5,7 +5,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
-final String baseUrl="http://192.168.137.98:8000";
+final String baseUrl="http://192.168.1.71:8000";
 final dio = Dio();
 
 Future<void> registerUserApi(data,context) async {
