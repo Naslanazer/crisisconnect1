@@ -146,7 +146,7 @@ class SupplyResourcesScreen extends StatelessWidget {
             ),
             DropdownMenuItem(
               value: 'shelter',
-              child: Text('Medicines'),
+              child: Text('Shelter'),
             ),
           ],
           onChanged: (value) {

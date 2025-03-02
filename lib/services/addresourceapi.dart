@@ -1,4 +1,5 @@
 import 'package:crisisconnect1/services/registrationapi.dart';
+import 'package:crisisconnect1/services/resourcelimitapi.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
@@ -31,8 +32,15 @@ Future<void> addResource({
         ),
       );
       Navigator.pop(context);
+       await resourcelimit();
     } else {
       print("Failed to add resource: ${response.data['message']}");
+        ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(response.data['message']),
+          backgroundColor: Colors.orange,
+        ),
+      );
     }
   } on DioException catch (e) {
     if (e.response != null) {

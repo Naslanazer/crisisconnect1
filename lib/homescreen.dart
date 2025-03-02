@@ -119,7 +119,7 @@ class Homescreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [    
                 _StatusCard(label: "Volunteers", value: '${volunteercount['volunteercount']??0}'),
-                _StatusCard(label: "Donations", value: '${disasterdata['total_donation']??0}'),
+                _StatusCard(label: "Donations", value: '${volunteercount['total_donation'].toString()??0}'),
               ],
             ),
             const SizedBox(height: 24),

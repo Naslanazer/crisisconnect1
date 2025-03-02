@@ -45,11 +45,12 @@ Future<void> performLogin(String email, String password, BuildContext context) a
         final data = response.data;
         lid = data['login_id'];
         print("Login successful! Token: $lid");
-
+        volunteerusername=email.replaceAll('@gmail.com', '');
         disasterdata = await getmap();
         disasterLocation = disasterdata['Location'];
         await resourcelimit();
         volunteercount = await fetchCounts();
+        print('ssssss$volunteercount');
 
         usertype = data['user_type'];
 
